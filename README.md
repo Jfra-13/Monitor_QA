@@ -5,9 +5,10 @@ QA Monitor es una solución completa y moderna para la monitorización automatiz
 ---
 
 ## 📸 
-> * <img width="1915" height="1079" alt="image" src="https://github.com/user-attachments/assets/72117758-f00a-4436-86bd-2bb7a9452730" />
+> * <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/28b1fe6d-7d0d-4191-affa-98f0105c07ff" />
 > * <img width="1906" height="1068" alt="image" src="https://github.com/user-attachments/assets/7cacd2ae-9758-4a75-8c52-e88c7dd0987c" />
 > * <img width="1914" height="1076" alt="image" src="https://github.com/user-attachments/assets/956b36aa-5614-48bb-beae-6927e4a8db7f" />
+> * <img width="1915" height="1079" alt="image" src="https://github.com/user-attachments/assets/72117758-f00a-4436-86bd-2bb7a9452730" />
 
 
 ---
