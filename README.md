@@ -4,14 +4,11 @@ QA Monitor es una solución completa y moderna para la monitorización automatiz
 
 ---
 
-## 📸 Capturas de Pantalla
+## 📸 
+> * <img width="1915" height="1079" alt="image" src="https://github.com/user-attachments/assets/72117758-f00a-4436-86bd-2bb7a9452730" />
+> * <img width="1906" height="1068" alt="image" src="https://github.com/user-attachments/assets/7cacd2ae-9758-4a75-8c52-e88c7dd0987c" />
+> * <img width="1914" height="1076" alt="image" src="https://github.com/user-attachments/assets/956b36aa-5614-48bb-beae-6927e4a8db7f" />
 
-<p align="center">
-  <img src="ruta/a/tu/captura_dashboard.png" alt="Dashboard Principal de QA Monitor" width="45%" style="margin-right: 10px;" />
-  <img src="ruta/a/tu/captura_analytics.png" alt="Detalle de Analíticas e Historial" width="45%" />
-</p>
-
-> *💡 Reemplaza `ruta/a/tu/captura_xxxx.png` con la ubicación real de tus imágenes (ej. `assets/dashboard.png`) para mostrarlas aquí.*
 
 ---
 
