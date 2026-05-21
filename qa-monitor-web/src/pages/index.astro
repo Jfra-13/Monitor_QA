@@ -1,0 +1,43 @@
+---
+// src/pages/index.astro
+import DashboardLayout from '@/layouts/DashboardLayout.astro';
+import AddEndpointModal from '@/modules/endpoints/components/AddEndpointModal'; 
+import EndpointTable from '@/modules/endpoints/components/EndpointTable'; 
+import ConfirmDeleteModal from '@/modules/endpoints/components/ConfirmDeleteModal';// Importamos la nueva tabla React
+import { api } from '@/core/apiClient';
+
+const endpoints = await api.getEndpoints();
+---
+
+<DashboardLayout title="Vista General">
+  
+  <header class="mb-8 flex justify-between items-end">
+    <div>
+      <h2 class="text-3xl font-bold text-slate-800 tracking-tight">APIs Monitoreadas</h2>
+      <p class="text-slate-500 mt-1">Gestión y Estado de salud de los microservicios.</p>
+    </div>
+    
+    <button id="btn-add" class="btn btn-primary shadow-lg border-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      Registrar API
+    </button>
+  </header>
+
+  {/* Inyectamos la tabla reactiva pasándole los datos iniciales del servidor */}
+  <EndpointTable initialEndpoints={endpoints} client:load />
+
+  {/* El modal de registro */}
+  <AddEndpointModal client:load />
+  <ConfirmDeleteModal client:load />
+
+</DashboardLayout>
+
+<script>
+  // Este script corre en el navegador
+  import { openModal } from '@/modules/endpoints/endpointStore';
+  
+  const btn = document.querySelector('#btn-add');
+  btn?.addEventListener('click', () => {
+    openModal(); 
+  });
+</script>

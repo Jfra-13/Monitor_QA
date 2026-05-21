@@ -1,0 +1,66 @@
+---
+import DashboardLayout from '@/layouts/DashboardLayout.astro';
+import { api, type PingLog, type ApiEndpoint } from '@/core/apiClient';
+import LatencyChart from '@/modules/analytics/components/LatencyChart';
+import PingHistoryTable from '@/modules/analytics/components/PingHistoryTable';
+
+export const prerender = false;
+
+const { id } = Astro.params;
+
+if (!id) {
+  return new Response("ID de endpoint no proporcionado", { status: 400 });
+}
+
+let endpoint: ApiEndpoint | undefined;
+let pings: PingLog[] = [];
+let error: string | null = null;
+
+try {
+  // Hacemos ambas peticiones en paralelo para más eficiencia
+  const [allEndpoints, pingHistory] = await Promise.all([
+    api.getEndpoints(),
+    api.getPingHistory(id)
+  ]);
+  
+  endpoint = allEndpoints.find(ep => ep.id === id);
+  pings = pingHistory;
+
+  if (!endpoint) {
+    // Si la API no devuelve error pero no encontramos el endpoint, lo marcamos.
+    return new Response("Endpoint no encontrado", { status: 404 });
+  }
+} catch (e) {
+  error = e instanceof Error ? e.message : "Ocurrió un error desconocido al cargar los datos.";
+}
+---
+
+<DashboardLayout title={endpoint ? `Análisis de ${endpoint.name}` : 'Análisis de Endpoint'}>
+  {error ? (
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg" role="alert">
+      <strong class="font-bold">Error: </strong>
+      <span class="block sm:inline">{error}</span>
+    </div>
+  ) : endpoint && (
+    <>
+      <header class="mb-8">
+        <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Análisis de: {endpoint.name}</h2>
+        <p class="text-slate-500 mt-1 font-mono text-sm">{endpoint.url}</p>
+      </header>
+
+      <div class="grid grid-cols-1 gap-8">
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold text-slate-700 mb-4">Historial de Latencia (ms)</h3>
+          <div class="h-80">
+            <LatencyChart client:only="react" data={pings} />
+          </div>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold text-slate-700 mb-4">Últimos 50 Pings</h3>
+          <PingHistoryTable client:load data={pings.slice(0, 50)} />
+        </section>
+      </div>
+    </>
+  )}
+</DashboardLayout>
