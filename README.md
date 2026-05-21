@@ -1,10 +1,4 @@
-# QA Monitor 📊⚡
-
-[![Java](https://shields.io)](https://oracle.com)
-[![Spring Boot](https://shields.io)](https://spring.io)
-[![Astro](https://shields.io)](https://astro.build)
-[![React](https://shields.io)](https://react.dev)
-[![PostgreSQL](https://shields.io)](https://postgresql.org)
+# QA Monitor
 
 QA Monitor es una solución completa y moderna para la monitorización automatizada de endpoints (APIs) y la visualización de su historial de disponibilidad (pings). El proyecto está dividido en un backend robusto en Spring Boot encargado de las tareas programadas y almacenamiento de datos, junto con un frontend interactivo y veloz construido sobre Astro y React.
 
